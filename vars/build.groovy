@@ -1,3 +1,3 @@
-def call(String projectname String imagetag){
-  sh " docker build -t notes-app:latest . "
+def call(String projectname){
+  sh " docker build -t notes-app . "
 }
