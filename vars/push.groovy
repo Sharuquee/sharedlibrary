@@ -1,5 +1,6 @@
-def call(String projectname, String dockerhubuser){
-  withDockerRegistry(credentialsid: docker, toolname: Docker)
-    sh " docker image tag ${projectname} ${dockerhubuser}/${pojectname}:$BUILD_ID "
-    sh " docker push ${dockerhubuser}/${projectname}:$BUILD_ID "
-  }
+def call(String credentialsid, String toolname, String projectname, String dockerhubuser) {
+    withDockerRegistry(credentialsId: credentialsid) { 
+        sh "docker image tag ${projectname}:latest ${dockerhubuser}/${projectname}:${BUILD_ID}"
+        sh "docker push ${dockerhubuser}/${projectname}:${BUILD_ID}"
+    }
+}
